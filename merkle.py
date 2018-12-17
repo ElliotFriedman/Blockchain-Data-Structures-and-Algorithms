@@ -1,13 +1,17 @@
 import hashlib
 
+#run this with python2, otherwise you will get an encoding error
+
 #do the initial hashing
 def hashlist(a):
 	
 	ret = []
 	i = 0
 	while i < len(a):
-		ret.append(hashlib.sha256(a[i]).hexdigest())
-		i += 1
+            tmp = hashlib.sha256(a[i]).hexdigest()
+
+            ret.append(tmp)
+            i += 1
 
 	print(ret)
 	return ret
@@ -16,8 +20,6 @@ def hashlist(a):
 def merkletree(a):
 
 	print("len merkle tree ", len(a))
-	if len(a) == 1:
-		return a
 
 	ret = []
 	i = 0
@@ -34,16 +36,16 @@ def merkletree(a):
 		tmp = hashlib.sha256(tmp).hexdigest()
 		ret.append(tmp)
 		i += 2
-	#I would rather blow up the stack than use a nested for loop
-	#tail recursion looks much cleaner
-	return merkletree(ret)
+	#recursion isn't needed, just call function in while loop until size of tree is 1
+	return (ret)
 
 
 a = ["a", "b", "c", "d"]
 a = hashlist(a)
 i = 0
 
-merkle = merkletree(a)
+while len(a) > 1:
+    a = merkletree(a)
 print("Final result")
-print(merkle)
+print(a)
 
