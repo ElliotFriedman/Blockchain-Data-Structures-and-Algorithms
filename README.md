@@ -1,4 +1,4 @@
-# Blockchain-Data-Structures-and-Algorithms
+# Blockchain Data Structures and Algorithms
 
 Attached are some basic blockchain data structures and algorithms.
 
